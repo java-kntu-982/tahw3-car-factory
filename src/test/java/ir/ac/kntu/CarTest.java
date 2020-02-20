@@ -19,7 +19,6 @@ public class CarTest {
     private boolean twoArgConstructor;
 
     @BeforeAll
-
     public static void prepare() {
         carClass = Car.class;
         constructors.addAll(Arrays.asList(carClass.getDeclaredConstructors()));
