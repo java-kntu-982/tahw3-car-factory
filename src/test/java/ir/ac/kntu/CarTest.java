@@ -22,7 +22,7 @@ public class CarTest {
 
     public static void prepare() {
         carClass = Car.class;
-        constructors.addAll(Arrays.asList(carClass.getConstructors()));
+        constructors.addAll(Arrays.asList(carClass.getDeclaredConstructors()));
     }
 
     @Test

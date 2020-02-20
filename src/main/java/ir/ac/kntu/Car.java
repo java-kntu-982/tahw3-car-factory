@@ -7,9 +7,7 @@ public class Car {
     private int weight;
     private String color;
     private String name;
-
-    // TODO: Write the required constructors
-
+    // TODO: Write the Required constructors
 
 
 
