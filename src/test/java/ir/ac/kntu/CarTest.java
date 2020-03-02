@@ -12,7 +12,6 @@ import java.util.List;
  * @author S.Shayan Daneshvar
  */
 @SuppressWarnings("JavaReflectionMemberAccess")
-@TestMethodOrder(OrderAnnotation.class)
 public class CarTest {
     private static Class<Car> carClass;
     private static final List<Constructor<?>> constructors = new ArrayList<>();
@@ -54,7 +53,6 @@ public class CarTest {
     }
 
     @Test
-    @Order(Integer.MAX_VALUE)
     public void allConstructorsFunctionalityTest() {
         final String hunter = "Hunter";
         final String blue = "Blue";
