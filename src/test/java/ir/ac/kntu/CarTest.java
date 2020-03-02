@@ -1,6 +1,7 @@
 package ir.ac.kntu;
 
 import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
 
 import java.lang.reflect.Constructor;
 import java.util.ArrayList;
@@ -11,12 +12,10 @@ import java.util.List;
  * @author S.Shayan Daneshvar
  */
 @SuppressWarnings("JavaReflectionMemberAccess")
+@TestMethodOrder(OrderAnnotation.class)
 public class CarTest {
     private static Class<Car> carClass;
     private static final List<Constructor<?>> constructors = new ArrayList<>();
-    private boolean noArgConstructor;
-    private boolean oneArgConstructor;
-    private boolean twoArgConstructor;
 
     @BeforeAll
     public static void prepare() {
@@ -31,7 +30,6 @@ public class CarTest {
                 .filter(x -> x.getParameterCount() == 0)
                 .count(), "No Default Constructor Found!");
         System.err.println("Default Constructor Found");
-        noArgConstructor = true;
     }
 
     @Test
@@ -42,7 +40,6 @@ public class CarTest {
                 .findFirst()
                 .ifPresentOrElse(Assertions::assertTrue, Assertions::fail);
         System.err.println("One Args Constructor Found!");
-        oneArgConstructor = true;
     }
 
     @Test
@@ -54,15 +51,11 @@ public class CarTest {
                 .findFirst()
                 .ifPresentOrElse(Assertions::assertTrue, Assertions::fail);
         System.err.println("Two Args Constructor Found!");
-        twoArgConstructor = true;
     }
 
     @Test
     @Order(Integer.MAX_VALUE)
     public void allConstructorsFunctionalityTest() {
-        if (!(noArgConstructor && oneArgConstructor && twoArgConstructor)) {
-            Assertions.fail("Required Constructors not available");
-        }
         final String hunter = "Hunter";
         final String blue = "Blue";
         final String white = "White";
@@ -83,7 +76,7 @@ public class CarTest {
                     .newInstance(hunter, blue);
             Assertions.assertEquals(hunter, car1.getName(), "Wrong " +
                     "name - 2 args Constructor");
-            Assertions.assertEquals(white, car1.getColor(), "Wrong " +
+            Assertions.assertEquals(blue, car1.getColor(), "Wrong " +
                     "Color - 2 Args Constructor");
         } catch (Exception ex) {
             ex.printStackTrace();
